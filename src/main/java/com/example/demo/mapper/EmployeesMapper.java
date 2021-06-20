@@ -3,7 +3,7 @@ package com.example.demo.mapper;
 
 
 import java.util.List;
-import com.example.demo.vo.EmployeesDTO;
+import com.example.demo.model.EmployeesDTO;
 import org.apache.ibatis.annotations.Param;
 
 public interface EmployeesMapper {

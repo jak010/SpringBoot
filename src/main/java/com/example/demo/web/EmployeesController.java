@@ -1,21 +1,19 @@
 package com.example.demo.web;
 
+
 // Built-in
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import javax.sound.midi.Soundbank;
 import javax.sql.DataSource;
 
 // DTO && Mapper
-import com.example.demo.vo.EmployeesDTO;
+import com.example.demo.model.EmployeesDTO;
 import com.example.demo.mapper.EmployeesMapper;
 
 // Third-Party
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +32,11 @@ public class EmployeesController {
 
     @RequestMapping(path = "employees")
     public String getAllEmployees() throws Exception {
-        /* 모든 Employees의 목록을 가져옴 */
+        /*
+         *  @DESC
+         *    Employee의 모든 데이터 반환
+         *
+         * */
 
         String result = null;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -49,25 +51,27 @@ public class EmployeesController {
     @GetMapping(path = "employees/{employeeNumber}")
     public ResponseEntity<String> getSelectEmployees(@PathVariable int employeeNumber) throws Exception {
         /*  @DESC
-         *    특정 employees를 가져오기
+         *    : 특정 employees를 가져오기
          *
          *  @Params
-         *  :param num: employees 번호
+         *    : param num: employees 번호
          * */
 
         String result = null;
-
         ObjectMapper objectMapper = new ObjectMapper();
 
         EmployeesDTO emp_vo = mapper.getSelectEmployees(employeeNumber);
 
+        /* Null 체크는 여기서 */
         if (emp_vo == null) {
-            return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
 
         result = objectMapper.writeValueAsString(emp_vo);
-        return new ResponseEntity<>(result, HttpStatus.OK);
-
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(result);
     }
 
 }
