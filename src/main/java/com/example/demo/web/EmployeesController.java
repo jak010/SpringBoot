@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
@@ -30,21 +31,32 @@ public class EmployeesController {
     @Autowired
     EmployeesMapper mapper;
 
-    @RequestMapping(path = "employees")
-    public String getAllEmployees() throws Exception {
-        /*
-         *  @DESC
-         *    Employee의 모든 데이터 반환
-         *
-         * */
+//     Mapper를 통해 json으로 반환하기
+//    @RequestMapping(path = "employees")
+//    public String getAllEmployees() throws Exception {
+//        /* @DESC
+//         *  - Employee의 모든 데이터 반환
+//         * */
+//
+//        String result = null;
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        List<EmployeesDTO> emp_vo = mapper.getAllEmployees();
+//
+//        result = objectMapper.writeValueAsString(emp_vo);
+//        return result;
+//    }
 
-        String result = null;
-        ObjectMapper objectMapper = new ObjectMapper();
+    @RequestMapping(path = "employees")
+    public ModelAndView employees() throws Exception {
+        /* html에 데이터 전달하기   */
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("employees");
 
         List<EmployeesDTO> emp_vo = mapper.getAllEmployees();
 
-        result = objectMapper.writeValueAsString(emp_vo);
-        return result;
+        mv.addObject("employees", emp_vo);
+        return mv;
     }
 
 
