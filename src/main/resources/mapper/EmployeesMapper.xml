@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org/DTO Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.mapper.EmployeesMapper">
-    <select id="getAllEmployees" resultType="com.example.demo.model.EmployeesDTO">
+<mapper namespace="com.example.demo.repository.EmployeesRepository">
+    <select id="getAllEmployees" resultType="com.example.demo.model.Employees">
         select * from employees;
     </select>
 
-    <select id="getSelectEmployees" resultType="com.example.demo.model.EmployeesDTO">
-        select * from employees where employeeNumber = '${employeeNumber}';
-    </select>
+<!--    <select id="getSelectEmployees" resultType="com.example.demo.model.Employees">-->
+<!--        select * from employees where employeeNumber = '${employeeNumber}';-->
+<!--    </select>-->
 
 </mapper>
