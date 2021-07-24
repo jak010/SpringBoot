@@ -6,7 +6,7 @@
 //
 //// DTO && Mapper
 //import com.example.demo.model.Employees;
-//import com.example.demo.model.EmployeesDTO;
+//import com.example.demo.Employees.EmployeesDTO;
 //import com.example.demo.mapper.EmployeesMapper;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //

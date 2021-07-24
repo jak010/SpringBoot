@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.Employees;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Employees {
+public class EmployeesDTO {
     private int employeeNumber;
     private String lastName;
     private String firstName;
