@@ -8,8 +8,12 @@
         select * from employees;
     </select>
 
-    <!--    <select id="getSelectEmployees" resultType="com.example.demo.Employees.EmployeesDTO">-->
-    <!--        select * from employees where employeeNumber = '${employeeNumber}';-->
-    <!--    </select>-->
+    <select id="getPageEmployees" resultType="com.example.demo.Employees.EmployeesDTO">
+        select * from employees LIMIT #{page}, #{perPage};
+    </select>
+
+    <select id="getSelectEmployee" resultType="com.example.demo.Employees.EmployeesDTO">
+        select * from employees where employeeNumber = '${employeeNumber}';
+    </select>
 
 </mapper>
