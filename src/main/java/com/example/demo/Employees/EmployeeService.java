@@ -16,11 +16,17 @@ public class EmployeeService {
     private EmployeesRepository employeesRepository;
 
     public List<EmployeesDTO> getEmployees(
-            @RequestParam Map<String, String> customQuery
+            @RequestParam Map<String, String> param
     ) throws Exception {
+        /*
+         *  TODO
+         *   - 필터링 적용해볼 것
+         * */
+
         // Parameter Setup
-        String page = customQuery.get("page");
-        String perPage = customQuery.get("perPage");
+        // Hack: 더 나은 방법이 필요할 듯 함
+        String page = param.get("page");
+        String perPage = param.get("perPage");
 
         // page와 perPage 가 없으면 전체 목록 조회
         if ((page == null) && (perPage == null)) {
