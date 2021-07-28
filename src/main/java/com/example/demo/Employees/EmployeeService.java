@@ -39,6 +39,7 @@ public class EmployeeService {
     public List<EmployeesDTO> getSelectEmployee(@Param("employeeNumber") int employeeNumber) throws Exception {
         /*
          *   TODO
+         *     - 특정 employee 반환하기
          *     - NULL Check
          *     - Empty Value Check
          * */
@@ -46,5 +47,9 @@ public class EmployeeService {
 
     }
 
+    public List<EmployeesDTO> generateEmployee(int employeeNumber) throws Exception {
+        return employeesRepository.generateEmployee(employeeNumber);
+
+    }
 
 }

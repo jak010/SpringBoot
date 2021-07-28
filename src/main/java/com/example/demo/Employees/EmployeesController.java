@@ -52,4 +52,28 @@ public class EmployeesController {
         return employeeService.getSelectEmployee(employeeNumber);
     }
 
+    @PostMapping(path = "/create")
+    public ResponseEntity<Message> createEmployee(
+            @RequestParam(value = "employeeNumber", required = true) int employeeName
+    ) throws Exception {
+        List<EmployeesDTO> data = employeeService.generateEmployee(employeeName);
+
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(
+                new MediaType(
+                        "application",
+                        "json",
+                        Charset.forName(StandardCharsets.UTF_8.name())
+                )
+        );
+
+        Message response = new Message();
+        response.setStatus_code(HttpStatus.OK.value());
+        response.setCode("OK");
+        response.setData(data);
+
+        return new ResponseEntity<>(response, header, HttpStatus.OK);
+    }
+
+
 }

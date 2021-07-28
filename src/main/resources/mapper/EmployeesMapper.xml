@@ -16,4 +16,13 @@
         select * from employees where employeeNumber = '${employeeNumber}';
     </select>
 
+    <select id="generateEmployee" resultType="com.example.demo.Employees.EmployeesDTO">
+        INSERT INTO employees SET
+        employeeNumber = '${employeeNumber}',
+        lastName = '', firstName = '',
+        extension = '', email = '',
+        officeCode = 1, reportsTo = 1002, jobTitle = '';
+
+    </select>
+
 </mapper>
